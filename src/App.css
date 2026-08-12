@@ -78,8 +78,9 @@ body {
 
 .app-container {
   width: 95%;
-  max-width: 1400px; /* Takes up most of wide desktop screens */
-  height: 100vh;
+  max-width: 1400px;
+  min-height: 100vh;
+  min-height: 100dvh;
   padding: 1.5rem 1rem;
   margin: 0 auto;
   display: flex;
@@ -115,7 +116,6 @@ body {
   gap: 1.25rem;
   border: 1px solid var(--border-card);
   flex: 1; /* Takes up remaining height of container */
-  min-height: 0; /* Ensures inner flex children can shrink properly */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -143,7 +143,8 @@ body {
 
 textarea {
   width: 100%;
-  flex: 1; /* Fills full height inside input-group */
+  flex: 1;
+  min-height: 140px; /* Ensures textareas stay usable on small screens */
   background-color: var(--bg-textarea);
   border: 1px solid var(--border-input);
   border-radius: 8px;
@@ -151,7 +152,7 @@ textarea {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 1rem;
   padding: 1rem;
-  resize: none; /* Prevents manually breaking the viewport flex bounds */
+  resize: vertical; /* Allow resizing if user needs more room */
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
@@ -191,11 +192,13 @@ textarea[readonly] {
 @media (max-width: 480px) {
   .app-container {
     width: 100%;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.75rem;
+    height: auto; /* Let content determine height if viewport is constrained */
+    min-height: 100dvh;
   }
 
   .converter-card {
-    padding: 0.85rem;
+    padding: 1rem;
     gap: 1rem;
   }
 
@@ -204,8 +207,8 @@ textarea[readonly] {
   }
 
   textarea {
-    font-size: 0.95rem;
-    padding: 0.75rem;
+    font-size: 16px; /* Prevents iOS Safari from auto-zooming when focused */
+    min-height: 160px;
   }
 }
 
