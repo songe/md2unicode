@@ -32,7 +32,7 @@
 }
 
 /* ==========================================================================
-   Dark Mode (Triggered by OS / Browser preference)
+   Dark Mode
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
@@ -63,52 +63,59 @@
 /* ==========================================================================
    Base Layout & Typography
    ========================================================================== */
+html, body {
+  height: 100%;
+  overflow: hidden; /* Prevents double scrollbars */
+}
+
 body {
   background-color: var(--bg-app);
   color: var(--text-input);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
-  width: 100%;
-  max-width: 680px;
-  padding: 2.5rem 1rem;
+  width: 95%;
+  max-width: 1400px; /* Takes up most of wide desktop screens */
+  height: 100vh;
+  padding: 1.5rem 1rem;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .app-header h1 {
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--text-title);
   letter-spacing: -0.025em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .app-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-subtitle);
 }
 
 .converter-card {
   background-color: var(--bg-card);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: 1.25rem;
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   border: 1px solid var(--border-card);
+  flex: 1; /* Takes up remaining height of container */
+  min-height: 0; /* Ensures inner flex children can shrink properly */
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -116,10 +123,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  flex: 1; /* Each box shares equal 50% height */
+  min-height: 0;
 }
 
 .input-group label {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-label);
   text-transform: uppercase;
@@ -134,14 +143,15 @@ body {
 
 textarea {
   width: 100%;
+  flex: 1; /* Fills full height inside input-group */
   background-color: var(--bg-textarea);
   border: 1px solid var(--border-input);
   border-radius: 8px;
   color: var(--text-input);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 1rem;
-  padding: 0.85rem;
-  resize: vertical;
+  padding: 1rem;
+  resize: none; /* Prevents manually breaking the viewport flex bounds */
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
@@ -177,20 +187,20 @@ textarea[readonly] {
   cursor: not-allowed;
 }
 
-/* ==========================================================================
-   Mobile Responsiveness
-   ========================================================================== */
+/* Mobile Adjustments */
 @media (max-width: 480px) {
   .app-container {
-    padding: 1.25rem 0.75rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
   }
 
   .converter-card {
-    padding: 1rem;
+    padding: 0.85rem;
+    gap: 1rem;
   }
 
   .app-header h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   textarea {
