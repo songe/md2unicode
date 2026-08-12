@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 interface UnicodeProps {
   input: string
 }
@@ -95,13 +97,34 @@ export function parseMarkdownUnicode(input: string): string {
 
 export default function Unicode({ input }: UnicodeProps) {
   const unicodeOutput = parseMarkdownUnicode(input)
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = () => {
+    if (!unicodeOutput) return
+    navigator.clipboard.writeText(unicodeOutput)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
-    <textarea
-      rows={6}
-      style={{ width: "100%", marginBottom: "10px" }}
-      readOnly={true}
-      value={unicodeOutput}
-    />
+    <div className="input-group">
+      <div className="output-header">
+        <label htmlFor="unicode-output">Unicode Output</label>
+        <button
+          className="copy-button"
+          onClick={handleCopy}
+          disabled={!unicodeOutput}
+        >
+          {copied ? "Copied!" : "Copy Text"}
+        </button>
+      </div>
+      <textarea
+        id="unicode-output"
+        rows={5}
+        readOnly
+        placeholder="Converted output will appear here..."
+        value={unicodeOutput}
+      />
+    </div>
   )
 }

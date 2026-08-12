@@ -1,29 +1,33 @@
-import { useState } from 'react';
-import './App.css';
-import Unicode from "./Unicode";
+import { useState } from "react"
+import "./App.css"
+import Unicode from "./Unicode"
 
-function App() {
+export default function App() {
   const [input, setInput] = useState("")
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 >
-          Markdown to Unicode Converter
-        </h1>
-
-        <textarea
-          rows={6}
-          style={{ width: "100%", marginBottom: "10px" }}
-          placeholder='Type or paste your markdown here'
-          value={input}
-          onChange={e => setInput(e.target.value) }
-        />
-
-      <Unicode input={input} />
+    <div className="app-container">
+      <header className="app-header">
+        <h1>md2unicode</h1>
+        <p className="app-subtitle">
+          Convert Markdown syntax into styled Unicode text instantly.
+        </p>
       </header>
-    </div>
-  );
-}
 
-export default App;
+      <main className="converter-card">
+        <div className="input-group">
+          <label htmlFor="markdown-input">Markdown Input</label>
+          <textarea
+            id="markdown-input"
+            rows={5}
+            placeholder="Type or paste **bold**, _italic_, or ~~strikethrough~~..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </div>
+
+        <Unicode input={input} />
+      </main>
+    </div>
+  )
+}
