@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/md2unicode/static/css/main.4dbad5d4.css",
+    "main.js": "/md2unicode/static/js/main.a4fab203.js",
+    "static/js/453.5184def9.chunk.js": "/md2unicode/static/js/453.5184def9.chunk.js",
+    "index.html": "/md2unicode/index.html",
+    "main.4dbad5d4.css.map": "/md2unicode/static/css/main.4dbad5d4.css.map",
+    "main.a4fab203.js.map": "/md2unicode/static/js/main.a4fab203.js.map",
+    "453.5184def9.chunk.js.map": "/md2unicode/static/js/453.5184def9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4dbad5d4.css",
+    "static/js/main.a4fab203.js"
+  ]
+}
