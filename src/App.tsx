@@ -10,7 +10,7 @@ export default function App() {
       <header className="app-header">
         <h1>md2unicode</h1>
         <p className="app-subtitle">
-          Convert Markdown syntax into styled Unicode text instantly.
+          Convert Markdown syntax into styled Unicode text instantly
         </p>
       </header>
 
