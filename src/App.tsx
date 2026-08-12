@@ -5,6 +5,10 @@ import Unicode from "./Unicode"
 export default function App() {
   const [input, setInput] = useState("")
 
+  const handleClear = () => {
+    setInput("")
+  }
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -19,14 +23,13 @@ export default function App() {
           <label htmlFor="markdown-input">Markdown Input</label>
           <textarea
             id="markdown-input"
-            rows={5}
             placeholder="Type or paste **bold**, _italic_, or ~~strikethrough~~..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
         </div>
 
-        <Unicode input={input} />
+        <Unicode input={input} onClear={handleClear} />
       </main>
     </div>
   )

@@ -2,6 +2,7 @@ import { useState } from "react"
 
 interface UnicodeProps {
   input: string
+  onClear: () => void
 }
 
 // Active format bitmasks for efficiency
@@ -95,7 +96,7 @@ export function parseMarkdownUnicode(input: string): string {
   return output.join("")
 }
 
-export default function Unicode({ input }: UnicodeProps) {
+export default function Unicode({ input, onClear }: UnicodeProps) {
   const unicodeOutput = parseMarkdownUnicode(input)
   const [copied, setCopied] = useState(false)
 
@@ -110,17 +111,25 @@ export default function Unicode({ input }: UnicodeProps) {
     <div className="input-group">
       <div className="output-header">
         <label htmlFor="unicode-output">Unicode Output</label>
-        <button
-          className="copy-button"
-          onClick={handleCopy}
-          disabled={!unicodeOutput}
-        >
-          {copied ? "Copied!" : "Copy Text"}
-        </button>
+        <div className="button-group">
+          <button
+            className="secondary-button"
+            onClick={onClear}
+            disabled={!input}
+          >
+            Clear
+          </button>
+          <button
+            className="copy-button"
+            onClick={handleCopy}
+            disabled={!unicodeOutput}
+          >
+            {copied ? "Copied!" : "Copy Text"}
+          </button>
+        </div>
       </div>
       <textarea
         id="unicode-output"
-        rows={5}
         readOnly
         placeholder="Converted output will appear here..."
         value={unicodeOutput}

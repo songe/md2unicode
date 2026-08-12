@@ -208,3 +208,31 @@ textarea[readonly] {
     padding: 0.75rem;
   }
 }
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: var(--text-subtitle);
+  border: 1px solid var(--border-input);
+  border-radius: 6px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background-color: var(--bg-textarea-readonly);
+  color: var(--text-input);
+}
+
+.secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
